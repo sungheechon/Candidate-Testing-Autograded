@@ -10,13 +10,10 @@ let question = "Who was the first American woman in space? ";
 let correctAnswer = "Sally Ride";
 let candidateAnswer = "";
 
-
 //TODO: Variables for Part 2
 let questions = ["Who was the first American woman in space? ", "True or false: 5 kilometer == 5000 meters? ", "(5 + 3)/2 * 10 = ? ", "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ", "What is the minimum crew size for the ISS? "];
 let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
 let candidateAnswers = ["", "", "", "", ""];
-
-
 
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
@@ -38,7 +35,6 @@ function gradeQuiz(candidateAnswers) {
   console.log(`
 Candidate Name: ${candidateName}`)
 
-
   for (let i = 0; i < 5; i++) {
     console.log(`${i + 1}) ${questions[i]}
 Your Answer: ${candidateAnswers[i]}
@@ -46,19 +42,25 @@ Correct Answer: ${correctAnswers[i]}
 `)
   }
 
-
-  /* 
-  SUNGHEE START: Part 1 Code
-    // if (candidateAnswers.toLowerCase().trim() == correctAnswers.toLowerCase()) {
-    //   console.log(`${candidateAnswers} is correct!`);
-    // } else {
-    //   console.log(`Sorry, ${candidateAnswers} is incorrect.`);
-    // }
-  SUNGHEE END:   Part 1 Code
-  */
-
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+  let numOfCorrectAnswers = 0;
+  for (let j = 0; j < 5; j++) {
+    if (candidateAnswers[j].toUpperCase() == correctAnswers[j].toUpperCase()) {
+      numOfCorrectAnswers += 1;
+    };
+  
+  }
 
+  grade = numOfCorrectAnswers / 5 * 100;
+  let passOrFail = "Passed";
+
+  if (grade < 80) {
+    passOrFail = "Failed";
+  }
+
+  console.log(`>>> Overall Grade: ${grade}% (${numOfCorrectAnswers} of 5 responses correct) <<<
+>>> Status: ${passOrFail.toUpperCase()} <<<
+  `)
 
   return grade;
 }
